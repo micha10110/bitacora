@@ -1,0 +1,246 @@
+/* ---------------------------------------------
+   Bitácora — paleta y tipografía tipo "cuaderno de bitácora"
+   Ink navy sobre papel crudo, con acentos en verde musgo,
+   y una fuente monoespaciada para lo que se registra
+   (evocando una terminal / un log de commits).
+--------------------------------------------- */
+
+:root {
+  --paper: #f2ede2;
+  --paper-line: #e0d7c4;
+  --ink: #23272b;
+  --ink-soft: #5a5f57;
+  --moss: #4b6a4f;
+  --moss-deep: #33473a;
+  --rust: #a8532f;
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-font-smoothing: antialiased; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 38px,
+      var(--paper-line) 39px
+    );
+  color: var(--ink);
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ---------- Encabezado ---------- */
+
+.masthead {
+  padding: 3.5rem 1.5rem 2rem;
+  text-align: center;
+  border-bottom: 2px solid var(--ink);
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.eyebrow {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--moss-deep);
+  margin: 0 0 0.6rem;
+}
+
+.masthead h1 {
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  margin: 0.6rem 0 0;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 1.02rem;
+}
+
+/* ---------- Cuerpo ---------- */
+
+.log {
+  flex: 1;
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.2rem 1.5rem 3rem;
+}
+
+.entry-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.4rem;
+}
+
+#task-input {
+  flex: 1;
+  padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  background: #fffdf8;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+#task-input:focus-visible {
+  outline: 3px solid var(--moss);
+  outline-offset: 1px;
+}
+
+#add-btn {
+  padding: 0.8rem 1.3rem;
+  background: var(--moss-deep);
+  color: #f2ede2;
+  border: none;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+#add-btn:hover { background: var(--moss); }
+#add-btn:focus-visible { outline: 3px solid var(--rust); outline-offset: 2px; }
+
+.log-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.6rem;
+}
+
+.filters { display: flex; gap: 0.4rem; }
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid var(--paper-line);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- Lista de entradas ---------- */
+
+.log-list {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+}
+
+.log-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 0.2rem;
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.log-entry .hash {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.75rem;
+  color: var(--rust);
+  padding-top: 0.15rem;
+  user-select: none;
+}
+
+.log-entry .entry-text {
+  flex: 1;
+  font-size: 1.02rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.log-entry.done .entry-text {
+  text-decoration: line-through;
+  color: var(--ink-soft);
+}
+
+.log-entry .timestamp {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  padding-top: 0.2rem;
+}
+
+.log-entry .delete-btn {
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.1rem 0.3rem;
+}
+
+.log-entry .delete-btn:hover { color: var(--rust); }
+
+.log-entry.hidden { display: none; }
+
+.empty-state {
+  display: none;
+  text-align: center;
+  color: var(--ink-soft);
+  font-style: italic;
+  padding: 2rem 0;
+}
+
+.empty-state.visible { display: block; }
+
+/* ---------- Pie ---------- */
+
+.colophon {
+  border-top: 2px solid var(--ink);
+  padding: 1.4rem 1.5rem 2rem;
+  text-align: center;
+}
+
+.colophon p {
+  max-width: 480px;
+  margin: 0 auto;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .entry-form { flex-direction: column; }
+  .log-entry .timestamp { display: none; }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitácora — mini proyecto para aprender Git</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="masthead">
+    <p class="eyebrow">práctica de git &amp; github</p>
+    <h1>Bitácora</h1>
+    <p class="subtitle">Un registro de tareas, para practicar registros de cambios.</p>
+  </header>
+
+  <main class="log">
+
+    <section class="entry-form">
+      <label for="task-input" class="visually-hidden">Nueva entrada</label>
+      <input type="text" id="task-input" placeholder="Escribí una tarea y presioná Enter…" autocomplete="off">
+      <button id="add-btn" type="button">Registrar</button>
+    </section>
+
+    <section class="log-meta">
+      <span id="entry-count">0 entradas</span>
+      <div class="filters" role="group" aria-label="Filtrar entradas">
+        <button class="filter-btn active" data-filter="todas">todas</button>
+        <button class="filter-btn" data-filter="pendientes">pendientes</button>
+        <button class="filter-btn" data-filter="hechas">hechas</button>
+      </div>
+    </section>
+
+    <ol id="log-list" class="log-list">
+      <!-- las entradas se agregan acá por JavaScript -->
+    </ol>
+
+    <p id="empty-state" class="empty-state">Todavía no hay entradas. Registrá la primera arriba ↑</p>
+
+  </main>
+
+  <footer class="colophon">
+    <p>Cada tarea que agregás acá es como un commit: un pequeño cambio, con su propio momento en el tiempo.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
