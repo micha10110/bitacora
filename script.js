@@ -12,6 +12,7 @@ const input = document.getElementById("task-input");
 const addBtn = document.getElementById("add-btn");
 const list = document.getElementById("log-list");
 const countLabel = document.getElementById("entry-count");
+const pendingLabel = document.getElementById("pending-count");
 const emptyState = document.getElementById("empty-state");
 const filterButtons = document.querySelectorAll(".filter-btn");
 
@@ -91,6 +92,8 @@ function render() {
   });
 
   countLabel.textContent = `${entries.length} entrada${entries.length === 1 ? "" : "s"}`;
+  const pendientes = entries.filter((e) => !e.done).length;
+pendingLabel.textContent = `${pendientes} pendiente${pendientes === 1 ? "" : "s"}`;
   emptyState.classList.toggle("visible", entries.length === 0);
 }
 
